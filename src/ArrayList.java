@@ -3,13 +3,16 @@ import java.util.Arrays;
 public class ArrayList<T>
 {
 
+
     private T[] array;
 
     private int size;
 
-    private static final int ARRAYCAP = 2;
+    private static final int ARRAYCAP = 5;
 
     private int maxSize;
+
+    private int rangeStart, rangeEnd;
 
     @SuppressWarnings("unchecked")
     ArrayList(int size){
@@ -99,7 +102,7 @@ public class ArrayList<T>
 
             array[index] = null;
 
-            for(int i = index; i< size-index+1; i++){
+            for(int i = index; i< size-index; i++){
                 array[i] = array[i+1];
             }
 
@@ -113,9 +116,6 @@ public class ArrayList<T>
 
     }
 
-    public void removeRange(int indexStart, int nIndex) {
-
-    }
 
     public T get(int index) {
         if (index >= 1) {
@@ -147,16 +147,50 @@ public class ArrayList<T>
 
 
     public static void main(String[] args) {
-        ArrayList<Object> e = new ArrayList<>(5);
+        ArrayList<Object> e = new ArrayList<>();
         e.add(1);
-        e.add("2");
-        e.add(true);
+        e.add(2);
+        e.add(3);
         e.String();
-        e.removeLast();
+        System.out.println();
+        e.remove(0);
+
         e.String();
+        System.out.println();
+
+        e.add(3);
+
+        e.String();
+        System.out.println();
+        e.add(4);
+
+        e.String();
+
+        e.remove(0);
+
+        System.out.println();
+        e.String();
+
+
+        System.out.println();
+        e.String();
+        System.out.println();
+        e.String();
+        e.add(1);
+        e.add(1);
+        e.add(1);
+        e.add(1);
+        e.add(1);
+        e.add(1);
+        e.add(1);
+        e.add(1);
+        e.add(1);
+
+
+
+
 
     }
-
 
 }
 
