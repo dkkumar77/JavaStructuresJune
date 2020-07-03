@@ -5,12 +5,27 @@ public class ArrayList<T>
 
 
     private T[] array;
-
+    /* variable "array" defines an array of "T"
+     */
     private int size;
+    /* variable "size" defines the current element size
+     * within the arraylist. As an object is added onto the list
+     * size will get incremented by one. As an objeect is removed 
+     * from the arraylist, size will get decremented by one.
+     */
 
-    private static final int ARRAYCAP = 5;
+    private static final int GENERIC_ARRAY_SIZE = 5;
+    /* This defines the generic size of the array when this class is called.
+     * For instance if a use calls for the class, without providing a paramater
+     * as to how large they want the array to be, it will be assigned a size
+     * of five.
+     */
 
     private int maxSize;
+    /* maxSize defines the size the arraylist can not surpass, unless of course
+     * it is forced to resize. Every time the resize method is called, maxSize
+     * is potential to change.
+     */
 
     private int rangeStart, rangeEnd;
 
@@ -20,13 +35,23 @@ public class ArrayList<T>
         maxSize = size;
         size = 0;
     }
+    /* Constructor in which the user can pass the size the wish the
+     * arraylist to be.
+     * maxSize by default is set to the "size" parameter that the user
+     * passes in.
+     */
+
 
     ArrayList(){
-        array = (T[]) new Object[ARRAYCAP];
-        maxSize = ARRAYCAP;
+        array = (T[]) new Object[GENERIC_ARRAY_SIZE];
+        maxSize = GENERIC_ARRAY_SIZE;
         size = 0;
 
     }
+    /*
+
+
+     */
 
     public void add(T value){
             if(arrayIsFull()) {
