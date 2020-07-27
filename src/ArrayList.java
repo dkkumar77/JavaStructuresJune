@@ -7,10 +7,10 @@ public class ArrayList<T>
     private T[] array;
     /* variable "array" defines an array of "T"
      */
-    private int size;
+    private int currentSize;
     /* variable "size" defines the current element size
      * within the arraylist. As an object is added onto the list
-     * size will get incremented by one. As an objeect is removed 
+     * size will get incremented by one. As an objeect is removed
      * from the arraylist, size will get decremented by one.
      */
 
@@ -33,7 +33,7 @@ public class ArrayList<T>
     ArrayList(int size){
         array = (T[]) new Object[size];
         maxSize = size;
-        size = 0;
+        currentSize = 0;
     }
     /* Constructor in which the user can pass the size the wish the
      * arraylist to be.
@@ -45,18 +45,24 @@ public class ArrayList<T>
     ArrayList(){
         array = (T[]) new Object[GENERIC_ARRAY_SIZE];
         maxSize = GENERIC_ARRAY_SIZE;
-        size = 0;
+        currentSize = 0;
 
     }
     /*
-
-
+        add value method, takes in the parameter value.
+        It will first check if the arraylist is full. If
+        the boolean method arrayIsFull() returns back true,
+        it will continue to add the 'T' value in the next available
+        indice.
+        However, if arrayIsFull() returns back asa false, it will
+        call for the resizeToGreaterLength() method in which it will
+        double the size of the current list.
      */
 
     public void add(T value){
             if(arrayIsFull()) {
-                array[size] = value;
-                size++;
+                array[currentSize] = value;
+                currentSize++;
             }
             else{
                 resizeToGreaterLength(maxSize*2);
@@ -67,8 +73,14 @@ public class ArrayList<T>
     }
 
 
+    /*
+        Simple boolean method which returns true, if the arraylist
+        isn't at its max capacity, and returns false if it is full.
+
+     */
+
     private boolean arrayIsFull(){
-        if(size < (maxSize) == true){
+        if(currentSize < (maxSize) == true){
             return true;
         }
         return false;
@@ -76,23 +88,38 @@ public class ArrayList<T>
 
 
 
+    /*
+        For loop that displays all contents within the arraylist.
+     */
     public void String(){
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < currentSize; i++) {
             System.out.print(array[i] + " ");
 
         }
     }
+    /*
+        Method removeLast() will remove the last value within the arraylist.
+     */
 
     public void removeLast(){
-        array[size] = null;
-        size--;
+        array[currentSize] = null;
+        currentSize--;
 
     }
+
+
+        /*
+            This method resizes the arraylist to the length of
+            newSize.
+            It first creates a new List, then it adds the contents
+            of the previous list onto the new list, and completely
+            replacing the old list, with the new list.k
+         */
     private void resizeToGreaterLength(int newSize){
 
         T[] temporary = (T[]) new Object[newSize];
 
-        System.arraycopy(array,0,temporary,0,size);
+        System.arraycopy(array,0,temporary,0, currentSize);
         maxSize = newSize;
         array = temporary;
 
@@ -109,7 +136,7 @@ public class ArrayList<T>
     }
 
     private boolean validateRange(int validateIndex){
-        if(validateIndex<size){
+        if(validateIndex< currentSize){
             return true;
 
         }
@@ -118,7 +145,7 @@ public class ArrayList<T>
     }
 
     public void remove(int index){
-        if(size==0) {
+        if(currentSize ==0) {
             System.out.print("-1");
             System.exit(0);
 
@@ -127,12 +154,12 @@ public class ArrayList<T>
 
             array[index] = null;
 
-            for(int i = index; i< size-index; i++){
+            for(int i = index; i< currentSize -index; i++){
                 array[i] = array[i+1];
             }
 
-            array[size-1] = null;
-            size--;
+            array[currentSize -1] = null;
+            currentSize--;
 
 
 
@@ -155,14 +182,14 @@ public class ArrayList<T>
 
 
     private boolean isEmpty(){
-        if(size==0){
+        if(currentSize ==0){
             return true;
         }
         return false;
     }
 
     public int size() {
-        return size;
+        return currentSize;
     }
 
 
@@ -201,15 +228,26 @@ public class ArrayList<T>
         e.String();
         System.out.println();
         e.String();
-        e.add(1);
-        e.add(1);
-        e.add(1);
-        e.add(1);
-        e.add(1);
-        e.add(1);
-        e.add(1);
-        e.add(1);
-        e.add(1);
+        e.remove(1);
+        e.String();
+        e.remove(1);
+        e.remove(1);
+        e.remove(1);
+        e.remove(1);
+        e.remove(1);
+        e.remove(1);
+        System.out.println();
+        e.String();
+        e.remove(1);
+        System.out.println();
+        e.String();
+        e.remove(0);
+        System.out.println();
+        e.String();
+        e.removeLast();
+        e.removeLast();
+        System.out.println();
+        e.String();
 
 
 
